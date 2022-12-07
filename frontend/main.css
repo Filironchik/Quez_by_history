@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-size: inherit;
+}
+
+body {
+	font-family: "Noto Sans", sans-serif;
+	font-size: 16px;
+
+	/* https://cssgradient.io/gradient-backgrounds/ */
+	background: #c6ffdd;
+	background: linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.themes {
+	background-color: #fff;
+	height: 400px;
+	width: 300px;
+
+	border-radius: 15px;
+
+}
+
+.img__themes {
+	margin: 40px 40px 10px 40px;
+	width: 220px;
+	height: 220px;
+}
+
+.title__themes {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.btn_themes {
+	background-color: #fbd786;
+	margin-left: 50px;
+	height: 45px;
+	width: 200px;
+	color: #fff;
+	border: 2px solid #fbd786;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.btn_themes:hover {
+	background-color: #fff;
+	color: #fbd786;
+	transition: 0.5s;
+
+}
+
+.wrapper {
+	margin-top: -200px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-auto-rows: 200px;
+	grid-column-gap: 50px;
+
+}
+
+.visible {
+	display: none;
+}

@@ -1,0 +1,9 @@
+[
+  {
+    "testId": "1",
+    "Questions":[
+      {"QuestionID":0,"RightAnswers": ["1","2"]},
+      {"QuestionID":1,"RightAnswers": ["3"]}
+    ]
+  }
+]

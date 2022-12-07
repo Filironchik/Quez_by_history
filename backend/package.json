@@ -1,0 +1,22 @@
+{
+  "name": "testinglab-backend",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon index.js"
+  },
+  "author": "iVick <ivick@list.ru> (https://ivick.ru)",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "koa": "^2.13.4",
+    "koa-body": "^6.0.1",
+    "koa-router": "^12.0.0"
+  }
+}
