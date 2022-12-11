@@ -13,6 +13,31 @@ function GetDataFromServer(id) {
         });
 }
 
+function ectAnswers(element, answers) {
+    const apiurl = "http://localhost:3000/test/" + element.id;
+    fetch(apiurl, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(answers),
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache"
+    }).then(
+        response => {
+            return response.json();
+        }
+    )
+        .then(Answers => {
+            finishQuiz(element, Answers)
+            console.log(Answers);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
 function addEventsBtnThemes() {
     const btns = {
         theme1: document.getElementById("themes_0"),
@@ -27,7 +52,7 @@ function addEventsBtnThemes() {
     btns.theme3.addEventListener("click", () => GetDataFromServer("id12313122"))
     btns.theme4.addEventListener("click", () => GetDataFromServer("id12313123"))
     btns.theme5.addEventListener("click", () => GetDataFromServer("id12313124"))
-    btns.themeMu.addEventListener("click", () => GetDataFromServer("id12313123"))
+    btns.themeMu.addEventListener("click", () => alert("Времено недоступно"))
 }
 addEventsBtnThemes()
 
@@ -95,7 +120,6 @@ function getId(id) {
 }
 
 function startQuiz(element) {
-    console.log(element)
 
     let answers = []
     let numberQuestion = 0
@@ -129,7 +153,7 @@ function showQuestion(element, numberQuestion, answers) {
 
 function checkQustion(element, numberQuestion, answers) {
     if (numberQuestion >= element.questions.length) {
-        finishQuiz(element, answers)
+        ectAnswers(element, answers)
         return true;
     }
 }
@@ -174,9 +198,8 @@ function getHTML(element, type, number, numberQuestion) {
 }
 
 
-function finishQuiz(element, answers) {
 
-    const correctAnswers = 1
+function finishQuiz(element, Answers) {
 
     getId("container_quiz").remove()
 
@@ -184,18 +207,18 @@ function finishQuiz(element, answers) {
         mesege,
         result
 
-    if (correctAnswers == element.questions.length) {
+    if (Answers == element.questions.length) {
         title = "Поздравляем!"
         mesege = "Вы ответили верно на все вопросы!"
 
-    } else if ((correctAnswers * 100) / element.questions.length >= 50) {
+    } else if ((Answers * 100) / element.questions.length >= 50) {
         title = 'Неплохой результат!';
         mesege = 'Вы дали более половины правильных ответов';
     } else {
         title = 'Стоит подучить материал!';
         mesege = 'Пока у вас меньше половины правильных ответов';
     }
-    result = `${correctAnswers}` + " из " + `${element.questions.length + 1}`
+    result = `${Answers}` + " из " + `${element.questions.length}`
 
     mainContainer.insertAdjacentHTML("afterbegin", templateBordResults.replace("{$title}", title).replace("{$mesege}", mesege).replace("{$result}", result))
     document.getElementById("btn_exit").addEventListener("click", () => exit())

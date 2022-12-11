@@ -51,12 +51,14 @@ body {
     color: #fff;
 }
 
-.input__radio {
+.input__radio::before {
     height: 10px;
     width: 10px;
-    background-color: #F9ECDB;
-    border: 1px solid #1F1D1B;
-    border-radius: 1px;
+    color: black;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 0;
+
 }
 
 .input_themes {
@@ -160,4 +162,22 @@ label {
 
 .container_inp {
     display: flex;
+}
+
+
+input[type="radio"]:checked::after {
+    background-color: #1F1D1B;
+}
+
+input[type="radio"]::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    top: -4px;
+    left: -1px;
+    position: relative;
+    background-color: #F9ECDB;
+    display: inline-block;
+    border: 2px solid #1F1D1B;
 }

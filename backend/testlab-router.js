@@ -1,7 +1,6 @@
 const Router = require('koa-router');
-const db = require('./db/questions.js');
-const tests = db;
-
+const tests = require('./db/questions.js');
+const AllAnswers = require('./db/answers.js');
 const router = new Router({
 	prefix: '/test'
 });
@@ -15,17 +14,18 @@ router.get('/', (ctx, next) => {
 	next();
 });
 
+
 router.get('/:id', (ctx, next) => {
-	let getRequestedTest = tests.filter(function (test) {
+	let getRequestedTest = tests.filter(function(test) {
 		if (test.id == ctx.params.id) {
 			return true;
 		}
 	});
 
 	if (getRequestedTest.length) {
-		ctx.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	  ctx.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 		ctx.set('Access-Control-Allow-Origin', '*');
-		ctx.set('Access-Control-Allow-Methods', 'POST, GET');
+		ctx.type = 'text/json; charset=utf-8';
 		ctx.response.status = 200;
 		ctx.body = getRequestedTest[0];
 	} else {
@@ -38,4 +38,25 @@ router.get('/:id', (ctx, next) => {
 	next();
 });
 
+router.post('/:id', (ctx, next) => 
+{
+	let goodAnswers = 0;
+	let rightAnswers = AllAnswers.filter(function(test) {
+		if (test.id == ctx.params.id) {
+			return true;
+		}
+	})[0].RightAnswers;
+
+	ctx.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	ctx.set("Access-Control-Allow-Origin", "*");
+	let userAnswers = ctx.request.body;
+	for(i=0;i<userAnswers.length;i++){
+		if (userAnswers[i] == rightAnswers[i]) {goodAnswers++;}
+	}
+	ctx.response.status = 200;
+	ctx.type = 'text/json; charset=utf-8';
+	ctx.response.body = goodAnswers;
+	next();
+	}
+);
 module.exports = router;
