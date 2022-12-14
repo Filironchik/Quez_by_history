@@ -143,7 +143,7 @@ function showQuestion(element, numberQuestion, answers) {
         return undefined
     } else {
         numberQuestion++
-        if (checkQustion(element, numberQuestion, answers) == true) {
+        if (checkQustion(element, numberQuestion, answers, result) == true) {
             return;
         }
         renderQuestion(element, numberQuestion)
@@ -151,8 +151,9 @@ function showQuestion(element, numberQuestion, answers) {
     }
 }
 
-function checkQustion(element, numberQuestion, answers) {
+function checkQustion(element, numberQuestion, answers, result) {
     if (numberQuestion >= element.questions.length) {
+        answers.push(result)
         ectAnswers(element, answers)
         return true;
     }
@@ -186,6 +187,8 @@ function checkAnswer() {
         return undefined;
     }
 
+    console.log("int " + parseInt(checkedRadio.value))
+
     return parseInt(checkedRadio.value)
 }
 
@@ -200,6 +203,8 @@ function getHTML(element, type, number, numberQuestion) {
 
 
 function finishQuiz(element, Answers) {
+
+
 
     getId("container_quiz").remove()
 

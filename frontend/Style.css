@@ -23,9 +23,12 @@ body {
 }
 
 .themes {
+    height: 50px;
+    display: grid;
+    grid-template-columns: 300px 20px;
+    margin-bottom: 30px;
 
-    display: flex;
-    margin-bottom: 20PX;
+    border: 2px solid #1F1D1B;
 }
 
 .btn_themes {
@@ -34,7 +37,7 @@ body {
     color: #1F1D1B;
     font-weight: bold;
     border-radius: 0;
-    height: 50px;
+    height: 40px;
     width: 100px;
     margin: 5px 0 0 20px;
     transition: 0.5s;
@@ -59,23 +62,19 @@ body {
 }
 
 .input_themes {
-    height: 50px;
-    width: 250px;
     border: 2px solid #1F1D1B;
     background-color: #F9ECDB;
     border-radius: 0;
-    margin: 0 0 0 10px;
-    padding-left: 20px;
+    margin: 5px 0 0 5px;
+    height: 35px;
+    padding-left: 10px;
 }
 
 .title__themes {
-    height: 50px;
-    margin-bottom: 30px;
-    border: 2px solid #1F1D1B;
-    padding-left: 20px;
     display: flex;
     align-items: center;
-    width: 250px;
+    width: 295px;
+    border-radius: 10px;
     margin: 0 0 0 10px;
     font-weight: 600;
 }
